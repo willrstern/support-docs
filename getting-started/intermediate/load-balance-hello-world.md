@@ -78,7 +78,7 @@ Configuration Screen.**
 ![](http://cdn.freshdesk.com/data/helpdesk/attachments/production/5001317900/original/Screen_Shot_2014-10-01_at_12.11.54_AM.png?1412136799)
 
 We name the service *lb*, leave the tag, deployment startegy and number of containers with their default values. Then click on the ports table, check the *Published* checkbox and click the word *dynamic* to **modify the Node port from 80**. Screen should look like the screenshot below. Then click on the blue button that reads **Next:
-environment variables.**
+environment variables.**  *(Note: do not use the "sequential deployment" advanced option as this will cause erratic behavior)* 
 
 ![](http://s.tutum.co.s3.amazonaws.com/support/images/load-balance-web-lb-conf.png)
 
@@ -86,7 +86,7 @@ Configuring the Load Balancer 
 ------------------------------
 
 Ok, here's where things start getting interesting. First thing we need
-to do is assign this service an API Role. You can [read more about API
+to do is assign this service an API Role. If you're not sure which to choose, just pick **Full Access** (global).  You can [read more about API
 Roles here](https://support.tutum.co/support/solutions/articles/5000012181).
 Doing this will pass a *TUTUM_AUTH* environment variable to your
 service's containers that will allow them to query Tutum's API on your
@@ -138,5 +138,3 @@ Now you may be asking, what if I scale the *lb* service to 2 or more containers?
 Tutum automatically assigns a DNS endpoint to all services that resolves to all of the containers of that service. You can use that DNS endpoint to load balance your load balancer. 
 
 You can try it by pointing your web browser to *servicename.username.svc.tutum.io* or  using *dig* or *nslookup* to see how the service endpoint resolves.
-
-
